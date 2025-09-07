@@ -1,52 +1,48 @@
 #include <fcntl.h>
 #include <stdio.h>
-#include "get_next_line.h"
+#include <stdlib.h>
 
+char *get_next_line(int fd);
 
-char *read_line(char *str_all, int fd)
+int main(void)
 {
-    char *buffer;
-    int bytes;
+    int fd;
+    char *line;
 
-    bytes = 0;
-    buffer = malloc(BUFFER_SIZE + 1);
-    if(!buffer)
+    fd = open("dosya.txt", O_RDONLY);
+    if (fd < 0)
     {
-        perror("bellek ayrilamadi");
-        return (NULL);
+        perror("open");
+        return (1);
     }
-    while((bytes = read(fd, buffer, BUFFER_SIZE)) > 0)
+/*     line = get_next_line(fd);
+    printf("LINE: %s", line);
+    free(line);
+    line = get_next_line(fd);
+    printf("LINE: %s", line);
+    free(line);
+    line = get_next_line(fd);
+    printf("LINE: %s", line);
+    free(line);
+    line = get_next_line(fd);
+    printf("LINE: %s", line);
+    free(line);
+    line = get_next_line(fd);
+    printf("LINE: %s", line);
+    free(line);
+    line = get_next_line(fd);
+    printf("LINE: %s", line);
+    free(line);
+    line = get_next_line(fd);
+    printf("LINE: %s", line);
+    free(line); */
+    
+    while ((line = get_next_line(fd)) != NULL)
     {
-        buffer[bytes] = '\0';
-        printf("okunan satır: %s\n",buffer);
-    }
-    return (buffer);
-}
-
-
-int main()
-{
-    
-    static char *new_str;
-    
-    int fd = open("dosya.txt", O_RDONLY);
-    if(fd < 0)
-    {
-        perror("dosya acilamadi");
-        return 1;
-    }
-
-    
-    
-
-    
-    
-    if(bytes < 0)
-    {
-        perror("okuma hatasi");
+        printf("LINE: %s", line);
+        free(line);
     }
 
-    free(buffer);
     close(fd);
-    return 0;
+    return (0);
 }

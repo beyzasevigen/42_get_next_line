@@ -65,3 +65,61 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	temp_str[i + j] = '\0';
 	return (temp_str);
 }
+char	*ft_strdup(const char *s)
+{
+	char	*tmp;
+	int		i;
+
+	tmp = malloc(ft_strlen (s) + 1);
+	if (!tmp)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		tmp [i] = s[i];
+		i++;
+	}
+	tmp [i] = '\0';
+	return (tmp);
+}
+static size_t	get_substr_len(const char *s, unsigned int start, size_t len)
+{
+	size_t	s_len;
+	size_t	new_len;
+
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+		return (0);
+	new_len = s_len - start;
+	if (len > new_len)
+		return (new_len);
+	return (len);
+}
+
+char	*ft_substr_new(char const *s, unsigned int start, size_t len)
+{
+	char	*substr;
+	size_t	i;
+	size_t	copy_len;
+
+	if (!s)
+		return (NULL);
+	copy_len = get_substr_len(s, start, len);
+	substr = malloc(copy_len + 2);
+	if (!substr)
+		return (NULL);
+	i = 0;
+	while (i < copy_len)
+	{
+		substr[i] = s[start + i];
+		i++;
+	}
+	if(s[start + i] == '\n')
+	{
+		substr[i] = '\n';
+		substr[i + 1] = '\0';
+	}
+	else
+		substr[i] = '\0';
+	return (substr);
+}
