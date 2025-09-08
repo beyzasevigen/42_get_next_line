@@ -1,8 +1,9 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <get_next_line.h>
 
-char *get_next_line(int fd);
+//char *get_next_line(int fd);
 
 int main(void)
 {
