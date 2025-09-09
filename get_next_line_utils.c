@@ -6,7 +6,7 @@
 /*   By: bsevigen <bsevigen@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 18:53:29 by bsevigen          #+#    #+#             */
-/*   Updated: 2025/08/23 20:25:57 by bsevigen         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:19:33 by bsevigen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,6 @@ size_t	ft_strlen(const char *s)
 		i++;
 	}
 	return (i);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	while (*s)
-	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
-	}
-	if (*s == (char)c)
-		return ((char *)s);
-	return (0);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
@@ -65,6 +52,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	temp_str[i + j] = '\0';
 	return (temp_str);
 }
+
 char	*ft_strdup(const char *s)
 {
 	char	*tmp;
@@ -82,6 +70,7 @@ char	*ft_strdup(const char *s)
 	tmp [i] = '\0';
 	return (tmp);
 }
+
 static size_t	get_substr_len(const char *s, unsigned int start, size_t len)
 {
 	size_t	s_len;
@@ -114,7 +103,7 @@ char	*ft_substr_new(char const *s, unsigned int start, size_t len)
 		substr[i] = s[start + i];
 		i++;
 	}
-	if(s[start + i] == '\n')
+	if (s[start + i] == '\n')
 	{
 		substr[i] = '\n';
 		substr[i + 1] = '\0';
