@@ -6,7 +6,7 @@
 /*   By: bsevigen <bsevigen@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 18:53:29 by bsevigen          #+#    #+#             */
-/*   Updated: 2025/09/09 17:19:33 by bsevigen         ###   ########.fr       */
+/*   Updated: 2025/09/10 16:46:58 by bsevigen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
+	if(s == NULL)
+		return (0);
 	i = 0;
 	while (s[i] != '\0')
 	{
@@ -24,24 +26,24 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char const *s2)
 {
-	size_t	len_s1;
-	size_t	len_s2;
 	int		i;
 	int		j;
 	char	*temp_str;
 
-	len_s1 = ft_strlen(s1);
-	len_s2 = ft_strlen(s2);
-	temp_str = malloc((len_s1 + len_s2 + 1) * sizeof(char));
+	temp_str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (temp_str == NULL)
 		return (NULL);
 	i = 0;
-	while (s1[i] != '\0')
+	if(s1 != NULL)
 	{
-		temp_str[i] = s1[i];
-		i++;
+		while (s1[i] != '\0')
+		{
+			temp_str[i] = s1[i];
+			i++;
+		}
+		free(s1);
 	}
 	j = 0;
 	while (s2[j] != '\0')
@@ -58,6 +60,8 @@ char	*ft_strdup(const char *s)
 	char	*tmp;
 	int		i;
 
+	if (!ft_strlen(s))
+		return NULL;
 	tmp = malloc(ft_strlen (s) + 1);
 	if (!tmp)
 		return (NULL);

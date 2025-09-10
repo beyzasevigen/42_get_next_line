@@ -6,7 +6,7 @@
 /*   By: bsevigen <bsevigen@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 18:53:24 by bsevigen          #+#    #+#             */
-/*   Updated: 2025/09/10 14:40:27 by bsevigen         ###   ########.fr       */
+/*   Updated: 2025/09/10 16:37:05 by bsevigen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 char	*ft_strchr(const char *s, int c)
 {
+	if (s == NULL)
+		return (0);
 	while (*s)
 	{
 		if (*s == (char)c)
@@ -39,15 +41,12 @@ static char	*read_line(int fd, char *str)
 		if (x.bytes == 0 || x.bytes < 0)
 		{
 			free(x.buffer);
-			if (str && *str)
+			if (str)
 				return (str);
-			free(str);
 			return (NULL);
 		}
 		x.buffer[x.bytes] = '\0';
-		x.tmp = ft_strjoin(str, x.buffer);
-		free(str);
-		str = x.tmp;
+		str = ft_strjoin(str, x.buffer);
 	}
 	free(x.buffer);
 	return (str);
@@ -66,10 +65,7 @@ static char	*get_remain_line(char *str)
 		free(str);
 		return (NULL);
 	}
-	if (*newline == '\n')
-		remain = NULL;
-	else
-		remain = ft_strdup(newline + 1);
+	remain = ft_strdup(newline + 1);
 	free(str);
 	return (remain);
 }
@@ -96,10 +92,11 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 	{
 		free(str);
+		str = NULL;
 		return (NULL);
 	}
 	if (!str)
-		str = ft_strdup("");
+		str = NULL;
 	str = read_line(fd, str);
 	if (!str)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: bsevigen <bsevigen@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 18:51:06 by bsevigen          #+#    #+#             */
-/*   Updated: 2025/09/10 14:06:57 by bsevigen         ###   ########.fr       */
+/*   Updated: 2025/09/10 15:58:08 by bsevigen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
+#include <stdio.h>
 
 typedef struct s_get_next_line_read
 {
@@ -30,7 +30,7 @@ typedef struct s_get_next_line_read
 
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char const *s2);
 char	*ft_strdup(const char *s);
 char	*ft_substr_new(char const *s, unsigned int start, size_t len);
 char	*get_next_line(int fd);
