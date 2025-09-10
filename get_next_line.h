@@ -6,7 +6,7 @@
 /*   By: bsevigen <bsevigen@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 18:51:06 by bsevigen          #+#    #+#             */
-/*   Updated: 2025/09/10 15:58:08 by bsevigen         ###   ########.fr       */
+/*   Updated: 2025/09/10 18:05:21 by bsevigen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-#include <stdio.h>
 
 typedef struct s_get_next_line_read
 {

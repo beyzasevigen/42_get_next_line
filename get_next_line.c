@@ -6,7 +6,7 @@
 /*   By: bsevigen <bsevigen@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 18:53:24 by bsevigen          #+#    #+#             */
-/*   Updated: 2025/09/10 16:37:05 by bsevigen         ###   ########.fr       */
+/*   Updated: 2025/09/10 18:28:19 by bsevigen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,18 @@ static char	*read_line(int fd, char *str)
 	while (x.bytes > 0 && !ft_strchr(str, '\n'))
 	{
 		x.bytes = read(fd, x.buffer, BUFFER_SIZE);
-		if (x.bytes == 0 || x.bytes < 0)
+		if (x.bytes < 0)
 		{
 			free(x.buffer);
 			if (str)
-				return (str);
+				free(str);
 			return (NULL);
 		}
-		x.buffer[x.bytes] = '\0';
-		str = ft_strjoin(str, x.buffer);
+		if (x.bytes)
+		{
+			x.buffer[x.bytes] = '\0';
+			str = ft_strjoin(str, x.buffer);
+		}
 	}
 	free(x.buffer);
 	return (str);
@@ -90,11 +93,7 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-	{
-		free(str);
-		str = NULL;
-		return (NULL);
-	}
+		return (free(str), NULL);
 	if (!str)
 		str = NULL;
 	str = read_line(fd, str);

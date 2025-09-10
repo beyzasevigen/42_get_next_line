@@ -6,7 +6,7 @@
 /*   By: bsevigen <bsevigen@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 18:53:29 by bsevigen          #+#    #+#             */
-/*   Updated: 2025/09/10 16:46:58 by bsevigen         ###   ########.fr       */
+/*   Updated: 2025/09/10 18:11:42 by bsevigen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
-	if(s == NULL)
+	if (s == NULL)
 		return (0);
 	i = 0;
 	while (s[i] != '\0')
@@ -36,7 +36,7 @@ char	*ft_strjoin(char *s1, char const *s2)
 	if (temp_str == NULL)
 		return (NULL);
 	i = 0;
-	if(s1 != NULL)
+	if (s1 != NULL)
 	{
 		while (s1[i] != '\0')
 		{
@@ -61,7 +61,7 @@ char	*ft_strdup(const char *s)
 	int		i;
 
 	if (!ft_strlen(s))
-		return NULL;
+		return (NULL);
 	tmp = malloc(ft_strlen (s) + 1);
 	if (!tmp)
 		return (NULL);
@@ -101,12 +101,9 @@ char	*ft_substr_new(char const *s, unsigned int start, size_t len)
 	substr = malloc(copy_len + 2);
 	if (!substr)
 		return (NULL);
-	i = 0;
-	while (i < copy_len)
-	{
+	i = -1;
+	while (++i < copy_len)
 		substr[i] = s[start + i];
-		i++;
-	}
 	if (s[start + i] == '\n')
 	{
 		substr[i] = '\n';
