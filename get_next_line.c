@@ -6,7 +6,7 @@
 /*   By: bsevigen <bsevigen@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 18:53:24 by bsevigen          #+#    #+#             */
-/*   Updated: 2025/09/09 17:11:22 by bsevigen         ###   ########.fr       */
+/*   Updated: 2025/09/10 14:40:27 by bsevigen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ static char	*get_remain_line(char *str)
 		free(str);
 		return (NULL);
 	}
-	remain = ft_strdup(newline + 1);
+	if (*newline == '\n')
+		remain = NULL;
+	else
+		remain = ft_strdup(newline + 1);
 	free(str);
 	return (remain);
 }
@@ -91,7 +94,10 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
+	{
+		free(str);
 		return (NULL);
+	}
 	if (!str)
 		str = ft_strdup("");
 	str = read_line(fd, str);
